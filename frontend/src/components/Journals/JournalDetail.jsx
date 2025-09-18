@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { useParams } from "react-router-dom";
 import blogs from "../../data/blogs";
 import "./JournalDetail.css"
+import ReactMarkdown from "react-markdown"
 
 const JournalDetail = () => {
 
@@ -17,9 +18,11 @@ const JournalDetail = () => {
 
   return (
     <div className="JournelDetailCardContainer">
-      <h1 className="DetailCardTitle">{blog.title}</h1>
+      {/* <h1 className="DetailCardTitle">{blog.title}</h1> */}
       <img src={blog.coverImage ? `/${blog.coverImage}` : "/defaultCover.jpg"} alt="Blog Cover Image" />
-      <div className="DetailCardContent">{blog.content}</div>
+      <div className="DetailCardContent">
+        <ReactMarkdown>{blog.content}</ReactMarkdown>
+        </div>
        <div className="DetailCardMeta">
         
        <div className="AuthorInfo">
