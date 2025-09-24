@@ -1,6 +1,7 @@
 .header-container{
     text-align: center;
     padding-top: 8px;
+    /* border: 1px solid red; */
 }
 
 .header-container h1{
@@ -8,7 +9,7 @@
     font-family: 'Playfair Display', serif;
     margin-top: 0;
     letter-spacing: 8px;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     display: inline-block;
     transition: transform 0.8s ease;
     
@@ -22,7 +23,7 @@
     font-size: 24px;
     letter-spacing: 8px;
     word-spacing: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     font-family: 'AvenirLTW01-35Light','Avenir', sans-serif;
 }
 
@@ -59,6 +60,7 @@
   .header-container h1 {
     font-size: 36px;
     letter-spacing: 2px;
+    /* margin-bottom: px; */
   }
 
   .header-container p {
@@ -67,25 +69,3 @@
     word-spacing: 1px;
   }
 }
-
-
-
-/* .blogPic{
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-height: 450px;
-}
-
-.blogMetaData{
-    font-family: 'AvenirLTW01-35Light','Avenir', sans-serif;
-    font-weight: lighter;
-    font-size: small;
-    padding: 0;
-    
-    margin: 0;
-    border: 1px solid red;
-    display: inline-block;
-    color: #333;
-
-} */

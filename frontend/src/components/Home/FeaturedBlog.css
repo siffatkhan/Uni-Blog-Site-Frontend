@@ -4,9 +4,11 @@ body {
 
 .featuredBlogContainer {
   max-width: 920px;
-  margin: 64px auto;
-  padding: 16px;
+  margin: 48px auto;
+  padding: 0px 16px;
   font-family: 'AvenirLTW01-35Light', 'Avenir', sans-serif;
+  /* border: 1px solid red; */
+
 }
 
 /* Label for Featured Post */
@@ -114,6 +116,8 @@ body {
 @media (min-width: 768px) {
   .blogCard {
     display: block;
+    /* border: 1px solid red; */
+    /* margin-top: 200px; */
   }
 
   .blogPic {

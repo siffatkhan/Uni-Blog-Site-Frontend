@@ -57,7 +57,7 @@ We are committed to expanding our content and introducing interactive features s
 Stay tuned for updates, and feel free to share your feedback with us.
 `,
     coverImage: "featured.jpg",
-    tags: ["personal", "blog", "purpose"],
+    tags: "productivity",
     slug: "why-we-made-this",
     likes: 10,
     commentsCount: 3,
@@ -123,7 +123,7 @@ Good productivity needs good health.
 Start with one or two of these tips and build your own routine.  
   `,
   coverImage: "",
-  tags: ["productivity", "students", "study-hacks"],
+  tags: "productivity",
   slug: "top-5-productivity-tips",
   likes: 24,
   commentsCount: 6,
@@ -187,7 +187,7 @@ Use **short breaks** to refresh your mind and avoid mental fatigue.
 With the right mindset and plan, your first finals will be far less stressful.  
   `,
   coverImage: "",
-  tags: ["exams", "tips", "finals"],
+  tags: "productivity",
   slug: "semester-1-exam-guide",
   likes: 18,
   commentsCount: 4,
@@ -247,7 +247,7 @@ Example:
 Start small, and your resume will grow with you.  
   `,
   coverImage: "",
-  tags: ["resume", "career", "freshman"],
+  tags: "career", 
   slug: "build-resume-as-freshman",
   likes: 32,
   commentsCount: 7,

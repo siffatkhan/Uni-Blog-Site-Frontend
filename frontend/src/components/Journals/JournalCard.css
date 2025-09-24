@@ -2,22 +2,27 @@
   max-width: 1000px;
   margin: 32px auto;
   font-family: 'AvenirLTW01-35Light', 'Avenir', sans-serif;
+  /* border: 1px solid red; */
 }
 
 .navLinks{
+  margin: 0px 30px;
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
+
 .navLinks button{
-  margin: 32px 12px;
+  margin: 28px 6px;
   text-decoration: none;
   color: #4f4f4f;
   font-weight: lighter;
-  font-size:  1rem;
+  font-size:  0.9rem;
   background: transparent;
   border: none;
   font-family: 'AvenirLTW01-35Light', 'Avenir', sans-serif;
 }
+
 .navLinks button:hover{
   color:#6600EA ;
   cursor: pointer;
@@ -29,23 +34,17 @@
   column-gap: 3.5rem;
   row-gap: 2rem;
   padding: 10px 0;
-  margin: 24px 20px;
+  margin: 16px 30px;
   justify-content: center;
-  /* font-family: 'AvenirLTW01-35Light', 'Avenir', sans-serif; */
-  /* border: 1px solid black; */
-  /* place-items: center; */
 }
 
 .journalCard {
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border: 1px solid #666;
   overflow: hidden;
   background-color: #fff;
   transition: transform 0.2s ease;
 }
-
-/* .journalCard:hover {
-  transform: translateY(-2px);
-} */
 
 .cardCover {
   width: 100%;
@@ -65,7 +64,7 @@
 
 .dot-separator {
   font-size: 0.6rem;
-  color: #aaa;         /* lighter gray */
+  color: #aaa;       
   margin: 0 7px;
   vertical-align: middle;
 }
@@ -105,16 +104,19 @@
 .heart-icon {
   width: 16px;
   height: 16px; 
-  fill: #e0245e; /* Instagram red */
+  fill: #e0245e;
   margin-left: 4px;
-  /* fill: #ccc; */
-  /* transition: fill 0.3s ease, transform 0.2s ease; */
 }
 
-/* .heart-icon.liked {
-  fill: #e0245e; /* Instagram red 
-  transform: scale(1.2);
-} */
+@media(max-width:600px){
+  .navLink{
+    justify-content: center;
+  }
+  .navLink button{
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
 
 
 

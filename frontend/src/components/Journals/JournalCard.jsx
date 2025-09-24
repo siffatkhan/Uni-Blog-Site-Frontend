@@ -1,24 +1,43 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import blogs from '../../data/blogs';
 import { NavLink } from "react-router-dom";
+import books from '../../data/books';
+import BookList from './BookList';
 import './JournalCard.css'; 
 
 const JournalCard = () => {
-  const [allTags, setAllTags] = useState([]);
-  useEffect(()=>{
-    // it gonna havce logic for tags filtering
-  },[])
+  const [selectedCategory,setselectedCategory]= useState("all");
+
+  function handleclick(category){
+      setselectedCategory(category)
+  }
+
+  let filteredBlogs;
+
+  if(selectedCategory==="all"){
+    filteredBlogs=blogs;
+  }
+  else if(selectedCategory==="books"){
+      filteredBlogs=books;
+  }else{
+    filteredBlogs = blogs.filter((blog)=>{
+      return blog.tags === selectedCategory
+    })
+  }
   return (
     <div className="wrapper">
       
       <div className="navLinks">
-        <button>All</button>
-        <button>Tech</button>
-        <button>Career</button>
-        <button>Productivity</button>
+        <button onClick={()=>handleclick("all")}>All</button>
+        <button onClick={()=>handleclick("men")}>Tech</button>
+        <button onClick={()=>handleclick("career")}>Career</button>
+        <button onClick={()=>handleclick("productivity")}>Productivity</button>
+        <button onClick={()=>handleclick("books")} >Wanna read books!!</button>
       </div>
+    
     <div className="journalCardGrid"> {/* Flex or grid container */}
-      {blogs.map((blog, index) =>{
+      {
+        selectedCategory==="books" ? ( <BookList/> ) : (filteredBlogs.map((blog, index) =>{
         if(blog.id!==1){
             return (
           <div className="journalCard" key={index}>
@@ -73,7 +92,9 @@ const JournalCard = () => {
             else {
                 return null;
             }
-            })}
+            }))
+      }
+      
     </div>
     </div>
   );
