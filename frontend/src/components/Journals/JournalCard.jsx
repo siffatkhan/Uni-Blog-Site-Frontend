@@ -37,7 +37,7 @@ const JournalCard = () => {
     
     <div className="journalCardGrid"> {/* Flex or grid container */}
       {
-        selectedCategory==="books" ? ( <BookList/> ) : (filteredBlogs.map((blog, index) =>{
+        selectedCategory==="books" ? ( <BookList shouldFetch={true}/> ) : (filteredBlogs.map((blog, index) =>{
         if(blog.id!==1){
             return (
           <div className="journalCard" key={index}>
