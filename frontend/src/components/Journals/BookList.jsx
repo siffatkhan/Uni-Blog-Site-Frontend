@@ -19,7 +19,7 @@ const BookList = ({shouldFetch}) => {
     const fetchBooks = async () => {
       try {
         setLoading(true)
-        const res = await axios.get("http://127.0.0.1:8000/api/books/",{
+        const res = await axios.get("http://127.0.0.1:8000/books/api/",{
           signal: controller.signal
         });
         setBooks(res.data);

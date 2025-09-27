@@ -9,7 +9,7 @@ import PastPapersPage from "./components/PastPapers/SubjectList";
 import PastPaperDetailPage from "./components/PastPapers/SubjectDetail";
 import JournalsPage from "./components/Journals/JournalList";
 import JournalDetailPage from "./components/Journals/JournalDetail";
-import JournalCreatePage from "./components/Journals/JournalCreate";
+// import JournalCreatePage from "./components/Journals/JournalCreate";
 import LoginPage from "./components/Account/Login";
 import SignupPage from "./components/Account/Signup";
 import AboutPage from "./components/AboutMe";
@@ -34,9 +34,9 @@ const router=createBrowserRouter([
       { path: "gpa-calculator", element: <GpaCalculatorPage /> },
       { path: "past-papers", element: <PastPapersPage /> },
       { path: "past-papers/:subjectIdSlug", element: <PastPaperDetailPage /> },
-      { path: "journals", element: <JournalsPage /> },
+      { path: "journals", element: <JournalsPage shouldFetchJournals={true} /> },
       { path: "journals/:slug", element: <JournalDetailPage /> },
-      { path: "journals/create", element: <JournalCreatePage /> },
+      // { path: "journals/create", element: <JournalCreatePage /> },
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignupPage /> },
       { path: "about", element: <AboutPage /> },

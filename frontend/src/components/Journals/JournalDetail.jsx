@@ -1,53 +1,94 @@
-import React,{useState} from "react";
-import { useParams } from "react-router-dom";
-import blogs from "../../data/blogs";
+import React, { useState,useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import "./JournalDetail.css"
 import ReactMarkdown from "react-markdown"
+import axios from "axios"
 
 const JournalDetail = () => {
 
-  const [likeStatus,setLikeStatus]=useState(false);
-  function toggleLikeStatus(){
-    setLikeStatus(!likeStatus)
-  }
+  const [blog,setBlogDetail]=useState(null);
+  const [loading,setLoading]=useState(false);
+
   const { slug } = useParams();
+  const location = useLocation();
+  const { fetchDetailedJournal } = location.state || {};
+  
 
-  const blog = blogs.find((b) => b.slug === slug);
+  const [likeStatus,setLikeStatus]=useState(
+    ()=>localStorage.getItem(`like-${slug}`) === "true"
+  );
 
+  function toggleLikeStatus(){
+    const newStatus =!likeStatus
+    setLikeStatus(newStatus);
+    localStorage.setItem(`like-${slug}`, newStatus)
+  }
+
+
+  useEffect(()=>{
+    if(!fetchDetailedJournal) return;
+
+    const controller=new AbortController();
+
+    const fetchJournal= async() => {
+      try{
+        setLoading(true)
+        const res = await axios.get(`http://127.0.0.1:8000/journals/api/${slug}/`, {
+          signal:controller.signal
+        });
+        setBlogDetail(res.data)
+      }
+      catch(err){
+        if(err.name==="CanceledError" || err.name==="AbortError"){
+          console.log("Request aborted")
+        } else {
+          console.log("Error fetching journal", err)
+        }
+      }
+      finally{
+        setLoading(false);
+      }
+    };
+    
+    fetchJournal();
+    return()=>controller.abort();
+
+  },[fetchDetailedJournal,slug])
+
+  if(loading) return <p>Loading...</p>
   if (!blog) return <p>Blog not found</p>; // avoid errors on invalid slugs
-
+  
   return (
     <div className="JournelDetailCardContainer">
       {/* <h1 className="DetailCardTitle">{blog.title}</h1> */}
-      <img src={blog.coverImage ? `/${blog.coverImage}` : "/defaultCover.jpg"} alt="Blog Cover Image" />
+      <img src={blog.cover_image_url ? `/${blog.cover_image_url}` : "/defaultCover.jpg"} alt="Blog Cover Image" loading="lazy"/>
+      
       <div className="DetailCardContent">
         <ReactMarkdown>{blog.content}</ReactMarkdown>
         </div>
-       <div className="DetailCardMeta">
-        
+
+      <div className="DetailCardMeta">
        <div className="AuthorInfo">
         <div>
-          <p className="AuthorName">
-            {blog.author}
-          </p>
+          <p className="AuthorName">{blog.author}</p>
           <p className="AuthorDept">{blog.department} • {blog.batch}</p>
             <div className="AuthorSocials">
-             <a href="https://linkedin.com/in/authorusername" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              { blog.li_username && (
+             <a href={`https://linkedin.com/in/${blog.li_username}`} target="_blank" rel="noopener noreferrer" title="LinkedIn">
               <i className="fab fa-linkedin"></i>
-             </a>
-             <a href="https://instagram.com/authorusername" target="_blank" rel="noopener noreferrer" title="Instagram">
+             </a> )}
+                { blog.ig_username && (
+             <a href={`https://instagram.com/${blog.ig_username}`} target="_blank" rel="noopener noreferrer" title="Instagram">
                 <i className="fab fa-instagram"></i>
-             </a>
+             </a> )}
             </div>
           </div>
         </div>
 
         <button 
-          className="LikeButton" 
-            onClick={toggleLikeStatus}>
+          className="LikeButton" onClick={toggleLikeStatus}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-             className={`heartIcon ${likeStatus == true ? 'liked' : ''}`}
-              >
+             className={`heartIcon ${likeStatus == true ? 'liked' : ''}`} >
            <path
              d="M12 21.35l-1.45-1.32C5.4 15.36 
                 2 12.28 2 8.5 
@@ -55,8 +96,7 @@ const JournalDetail = () => {
                   4.5 2.09C13.09 3.81 14.76 3 
                 16.5 3 19.58 3 22 5.42 
                 22 8.5c0 3.78-3.4 
-                6.86-8.55 11.54L12 21.35z"
-            />
+                6.86-8.55 11.54L12 21.35z"/>
             </svg>
            {likeStatus == true ? `Liked`: "Like"}
          </button>
