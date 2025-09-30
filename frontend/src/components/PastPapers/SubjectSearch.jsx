@@ -13,7 +13,22 @@ const SubjectSearch = (props) => {
         placeholder="Search Subject"
       />
     </div>
+    // onChange={props.onChange} means when user types,
+    //  it calls the function from parent (handleChange).
   );
 };
 
 export default SubjectSearch;
+
+
+
+// The Flow (Trigger Chain)
+
+// User types in search box → onChange event fires.
+// That calls handleChange (from parent).
+// setSubjectInput(value) updates state in parent.
+// State update causes React to re-render SubjectList.
+// During re-render, filteredSubjects is recalculated.
+// Updated subjectInput is passed again as a prop to SubjectSearch.
+// The input box shows new text (controlled component).
+// Cards display updates based on filteredSubjects.

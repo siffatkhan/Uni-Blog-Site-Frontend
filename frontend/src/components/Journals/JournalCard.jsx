@@ -40,7 +40,7 @@ const JournalCard = ({blogs}) => {
         (filteredBlogs.map((blog, index) =>{
         if(!blog.is_featured){
             return (
-                <div className="journalCard" key={index}>
+                <div className="journalCard" key={blog.id}>
                   <img    
                       src={blog.cover_image_url ? `/${blog.cover_image_url}` : '/defaultCover.jpg'}
                       alt="card cover image"

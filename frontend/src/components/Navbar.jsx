@@ -36,12 +36,6 @@ const Navbar = () => {
         <li>
           <NavLink to="/about" onClick={closeMenu} className={({ isActive }) => isActive ? "highlight" : ""}>About Me</NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => isActive ? "highlight" : ""}>Contact</NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to="/login" onClick={closeMenu} className={({ isActive }) => isActive ? "highlight" : ""}>Login</NavLink>
-        </li> */}
       </ul>
     </nav>
   );

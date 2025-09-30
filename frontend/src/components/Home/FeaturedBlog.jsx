@@ -30,8 +30,8 @@ const FeaturedBlog = () => {
 
   if (loading) return <p>Loading featured post...</p>;
 
-  // const imageSrc = `https://drive.google.com/uc?export=view&id=1AfeqMBTq04g8dbCkTCMw9wrtZXZngLOd`
   // image problem still persists
+  // const imageSrc = `https://drive.google.com/uc?export=view&id=1AfeqMBTq04g8dbCkTCMw9wrtZXZngLOd`
 
   return (
     <div className="featuredBlogContainer">
@@ -39,9 +39,10 @@ const FeaturedBlog = () => {
       <div className="blogCard">
         <img
          src={
-          featured.cover_image_url
-          ? `https://drive.google.com/uc?export=view&id=${featured.cover_image_url}`
-          : "/featured.jpg"
+          // featured.cover_image_url
+          // ? `https://drive.google.com/uc?export=view&id=${featured.cover_image_url}`
+          // : 
+          "/featured.jpg"
             }
           alt="Featured Blog"
           className="blogPic"

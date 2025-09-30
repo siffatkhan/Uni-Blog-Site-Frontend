@@ -11,5 +11,4 @@ const SubjectCard = ({ title, link }) => {
     </article>
   );
 };
-
 export default SubjectCard;

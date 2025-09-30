@@ -4,15 +4,15 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Layout from "./components/HomeLayout";
 import HomePage from "./components/Home/HomePage";
-import GpaCalculatorPage from "./components/GPACalculator";
-import PastPapersPage from "./components/PastPapers/SubjectList";
-import PastPaperDetailPage from "./components/PastPapers/SubjectDetail";
-import JournalsPage from "./components/Journals/JournalList";
-import JournalDetailPage from "./components/Journals/JournalDetail";
+import GPACalculator from "./components/GPACalculator";
+import SubjectList from "./components/PastPapers/SubjectList";
+import SubjectDetail from "./components/PastPapers/SubjectDetail";
+import JournalList from "./components/Journals/JournalList";
+import JournalDetail from "./components/Journals/JournalDetail";
 // import JournalCreatePage from "./components/Journals/JournalCreate";
-import LoginPage from "./components/Account/Login";
-import SignupPage from "./components/Account/Signup";
-import AboutPage from "./components/AboutMe";
+// import LoginPage from "./components/Account/Login";
+// import SignupPage from "./components/Account/Signup";
+import AboutMe from "./components/AboutMe";
 // import ContactPage from "./components/Contact";
 import HomeLayout from "./components/HomeLayout";
 import MainLayout from "./components/MainLayout";
@@ -31,15 +31,15 @@ const router=createBrowserRouter([
   {
     path:"/",element:<MainLayout/>,
     children:[
-      { path: "gpa-calculator", element: <GpaCalculatorPage /> },
-      { path: "past-papers", element: <PastPapersPage /> },
-      { path: "past-papers/:subjectIdSlug", element: <PastPaperDetailPage /> },
-      { path: "journals", element: <JournalsPage shouldFetchJournals={true} /> },
-      { path: "journals/:slug", element: <JournalDetailPage /> },
+      { path: "gpa-calculator", element: <GPACalculator /> },
+      { path: "past-papers", element: <SubjectList shouldFetchSubject={true} /> },
+      { path: "past-papers/:slug", element: <SubjectDetail /> },
+      { path: "journals", element: <JournalList shouldFetchJournals={true} /> },
+      { path: "journals/:slug", element: <JournalDetail /> },
       // { path: "journals/create", element: <JournalCreatePage /> },
-      { path: "login", element: <LoginPage /> },
-      { path: "signup", element: <SignupPage /> },
-      { path: "about", element: <AboutPage /> },
+      // { path: "login", element: <LoginPage /> },
+      // { path: "signup", element: <SignupPage /> },
+      { path: "about", element: <AboutMe /> },
       // { path: "contact", element: <ContactPage /> },
     ],
   },

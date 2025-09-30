@@ -1,5 +1,5 @@
 import React from 'react';
-import './DeveloperInfo.css';
+import './AboutMe.css';
 
 const DeveloperInfo = () => {
   return (

@@ -1,0 +1,187 @@
+/* Container */
+.subject-detail {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  font-family: 'AvenirLTW01-35Light','Avenir', sans-serif;
+
+}
+
+/* Title */
+.subject-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #222;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border-left: 4px solid #6600EA;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Resource List */
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resource-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background: white;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: background 0.2s ease;
+}
+
+.resource-item:hover {
+  background: #f7f7f7;
+}
+
+.resource-icon {
+  margin-right: 12px;
+  font-size: 1rem;
+  color: #6600EA;
+}
+
+.resource-description {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.resource-avatar img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.resource-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.resource-link:hover {
+  color: #6600EA;
+  text-decoration: underline;
+}
+
+/* Empty Message */
+.empty-message {
+  font-style: italic;
+  color: #777;
+  padding: 5px 0;
+}
+
+/* Loader */
+.status.loading {
+  text-align: center;
+  margin: 20px 0;
+  color: #6600EA;
+  font-weight: 500;
+}
+.status.loading::after {
+  content: "";
+  display: inline-block;
+  margin-left: 8px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #6600EA;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error Message */
+.status.error {
+  background: #ffe6e6;
+  color: #d60000;
+  border: 1px solid #d60000;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Distinct Help Section */
+.help-section {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f3e9ff;
+  border: 2px dashed #6600EA;
+  border-radius: 12px;
+  text-align: center;
+}
+.help-section h3 {
+  font-size: 1.4rem;
+  color: #6600EA;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.help-section p {
+  font-size: 1rem;
+  color: #444;
+}
+.help-section strong {
+  color: #000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .subject-detail {
+    padding: 15px;
+  }
+
+  .subject-title {
+    font-size: 1.4rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .resource-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .resource-description {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}

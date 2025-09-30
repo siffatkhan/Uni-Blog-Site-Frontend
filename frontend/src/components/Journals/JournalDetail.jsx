@@ -12,7 +12,19 @@ const JournalDetail = () => {
   const { slug } = useParams();
   const location = useLocation();
   const { fetchDetailedJournal } = location.state || {};
+
+  // location.state
+  // <Link to={`/journals/${journal.slug}`} 
+  // state={{ fetchDetailedJournal }}></Link>
+  // When you navigate using <Link> or useNavigate, you can pass extra state.
+  // IT gives you a pre-passed function (or data) from the previous page, 
+  // so you don’t need to fetch again from scratch if you already have it.
+  // This safely extracts fetchDetailedJournal if it was passed. 
+  // If nothing was passed, it defaults to {} so it doesn’t crash.
   
+
+  // // ==================================================================
+  // LIKE FUNCTIONITY ADDED TO THE LOCALSTORAGE
 
   const [likeStatus,setLikeStatus]=useState(
     ()=>localStorage.getItem(`like-${slug}`) === "true"
@@ -23,7 +35,8 @@ const JournalDetail = () => {
     setLikeStatus(newStatus);
     localStorage.setItem(`like-${slug}`, newStatus)
   }
-
+// ==================================================================
+// Fetching journals from database
 
   useEffect(()=>{
     if(!fetchDetailedJournal) return;
@@ -54,10 +67,11 @@ const JournalDetail = () => {
     return()=>controller.abort();
 
   },[fetchDetailedJournal,slug])
-
+// ==================================================================
   if(loading) return <p>Loading...</p>
   if (!blog) return <p>Blog not found</p>; // avoid errors on invalid slugs
   
+// ==================================================================
   return (
     <div className="JournelDetailCardContainer">
       {/* <h1 className="DetailCardTitle">{blog.title}</h1> */}
