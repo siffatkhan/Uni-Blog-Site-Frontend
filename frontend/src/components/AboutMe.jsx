@@ -59,21 +59,6 @@ const DeveloperInfo = () => {
           className="contact-form"
           action="https://formsubmit.co/siffatullah.321@example.com"
           method="POST"
-
-          // will be needing this below in backend to get email programmatically
-          // ============================================================
-          // const express = require('express');
-          // const nodemailer = require('nodemailer');
-          // const app = express();
-          // app.use(express.json());
-
-          // app.post('/contact', async (req, res) => {
-          //   const { name, email, message } = req.body;
-          //   // setup nodemailer transporter & send mail here
-          // });
-
-          // app.listen(5000, () => console.log("Server running"));
-          // ============================================================
         >
           <input
             type="text"
