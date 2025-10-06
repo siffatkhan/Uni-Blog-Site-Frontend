@@ -33,7 +33,7 @@ const Footer = () => {
           {/* <a href="/privacy-policy">Privacy Policy</a>
           <a href="/terms">Terms of Service</a> */}
             <p>
-              Disclaimer: This is my own personal work and is not officially connected 
+              Disclaimer: This is my own personal work and is not officially associated 
               to or endorsed by the IMSciences or any other institution.
             </p>
         </div>

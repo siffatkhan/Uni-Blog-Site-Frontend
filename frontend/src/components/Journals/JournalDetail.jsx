@@ -86,7 +86,9 @@ const JournalDetail = () => {
         <div>
           <p className="AuthorName">{blog.author}</p>
           <p className="AuthorDept">{blog.department} • {blog.batch}</p>
-            <div className="AuthorSocials">
+
+          {/* BELOW LINKS CAN BE ADDED FOR THE INSTA AND LINKEDIN PROFILE OF EACH JOURNALS AUTHORS */}
+            {/* <div className="AuthorSocials">
               { blog.li_username && (
              <a href={`https://linkedin.com/in/${blog.li_username}`} target="_blank" rel="noopener noreferrer" title="LinkedIn">
               <i className="fab fa-linkedin"></i>
@@ -95,7 +97,8 @@ const JournalDetail = () => {
              <a href={`https://instagram.com/${blog.ig_username}`} target="_blank" rel="noopener noreferrer" title="Instagram">
                 <i className="fab fa-instagram"></i>
              </a> )}
-            </div>
+            </div> */}
+            
           </div>
         </div>
 

@@ -1,35 +1,23 @@
 import React from 'react';
 import './AboutMe.css';
+import ContactForm from './ContactForm';
 
 const DeveloperInfo = () => {
   return (
     <div className="about-container">
-      <div className="hi-div">
-  <p className="typing">Hi !!!</p>
-</div>
-
-      <div className="about-card">
-        <div className="about-image-container">
-          <img
-            src="/2ndpic.jpeg"
-            alt="profile pic"
-            className="about-image"
-            title="intentionally rotated pic"
-
-          />
-          {/* <div className="footerLinks">
-            <a href="https://github.com/siffatkhan" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-github"></i>
-          </a>
-          <a href="https://linkedin.com/in/siffat-ullah" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-linkedin"></i>
-          </a>
-          <a href="https://instagram.com/sifat_kk9" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-instagram"></i>
-          </a>
-          </div> */}
+       <div className="hi-div">
+            <p className="typing">Hi !!!</p>
         </div>
 
+        <div className="about-card">
+          <div className="about-image-container">
+            <img
+              src="/selfpicture.jpeg"
+              alt="profile pic"
+              className="about-image"
+              title="intentionally rotated pic"
+            />
+          </div>
 
         <div className="about-content">
           <h1 className="about-heading">
@@ -54,32 +42,9 @@ const DeveloperInfo = () => {
         <p>Let's Connect</p>
       </div>
 
-      <div className="contact-container">
-        <form 
-          className="contact-form"
-          action="https://formsubmit.co/siffatullah.321@example.com"
-          method="POST"
-        >
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="contact-input"
-          />
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="contact-input"
-          />
-          <textarea
-            placeholder="Your Message"
-            className="contact-textarea"
-          ></textarea>
-           {/* <input type="hidden" name="_captcha" value="false" /> */}
-          <button type="submit" className="contact-btn">
-            Send Message
-          </button>
-        </form>
-      </div>
+
+      <ContactForm />
+     
     </div>
   );
 };

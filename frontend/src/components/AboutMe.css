@@ -113,6 +113,25 @@
   color: white;
   border: 1px solid #6600EA;
 }
+.contact-status {
+  margin-top: 10px;
+  font-size: 15px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.contact-status.sending {
+  color: #888;
+}
+
+.contact-status.success {
+  color: #2ecc71; /* green */
+}
+
+.contact-status.error {
+  color: #e74c3c; /* red */
+}
+
 
 
 
