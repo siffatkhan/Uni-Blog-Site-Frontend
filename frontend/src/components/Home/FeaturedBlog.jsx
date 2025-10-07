@@ -29,21 +29,15 @@ const FeaturedBlog = () => {
   }, []);
 
   if (loading) return <p>Loading featured post...</p>;
-
-  // image problem still persists
-  // const imageSrc = `https://drive.google.com/uc?export=view&id=1AfeqMBTq04g8dbCkTCMw9wrtZXZngLOd`
+  
+// ===========================================================================
 
   return (
     <div className="featuredBlogContainer">
       <p className="featuredLabel">FEATURED POST</p>
       <div className="blogCard">
         <img
-         src={
-          // featured.cover_image_url
-          // ? `https://drive.google.com/uc?export=view&id=${featured.cover_image_url}`
-          // : 
-          "/featured.jpg"
-            }
+         src={"/featured.jpg"}
           alt="Featured Blog"
           className="blogPic"
           loading="lazy"
@@ -65,12 +59,11 @@ const FeaturedBlog = () => {
             <Link
             to={featured ? `/journals/${featured.slug}` : "#"}
             state={{ fetchDetailedJournal: true}}
-            className="blogLink"
-          >
+            className="blogLink">
+
             <h1 className="blogTitle">{featured?.title || "Why  We Made This Site"}</h1>
             <p className="blogExcerpt">{featured?.excerpt || "The purpose of this website is to create a central hub for students where they can easily find blogs, past papers, and resources related to their academic journey. Aim is to save time and provide guidance."}</p>
           </Link>
-
           </div>
         </div>
       </div>

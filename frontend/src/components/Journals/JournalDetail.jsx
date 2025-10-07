@@ -3,6 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import "./JournalDetail.css"
 import ReactMarkdown from "react-markdown"
 import axios from "axios"
+import ImageMap from "./ImageMap"
 
 const JournalDetail = () => {
 
@@ -75,11 +76,15 @@ const JournalDetail = () => {
   return (
     <div className="JournelDetailCardContainer">
       {/* <h1 className="DetailCardTitle">{blog.title}</h1> */}
-      <img src={blog.cover_image_url ? `/${blog.cover_image_url}` : "/defaultCover.jpg"} alt="Blog Cover Image" loading="lazy"/>
+
+      {/* testing new component */}
+      {/* <img src={blog.cover_image_url ? `/${blog.cover_image_url}` : "/defaultCover.jpg"} alt="Blog Cover Image" loading="lazy"/> */}
+      <ImageMap tag={blog.tags} alt={"blog cover image"} loading={false} className={"JournelDetailCardContainerImg"}/>
       
+
       <div className="DetailCardContent">
         <ReactMarkdown>{blog.content}</ReactMarkdown>
-        </div>
+      </div>
 
       <div className="DetailCardMeta">
        <div className="AuthorInfo">
@@ -98,7 +103,7 @@ const JournalDetail = () => {
                 <i className="fab fa-instagram"></i>
              </a> )}
             </div> */}
-            
+
           </div>
         </div>
 
@@ -123,3 +128,9 @@ const JournalDetail = () => {
 };
 
 export default JournalDetail;
+
+
+
+//       With lazy loading:
+// Images below the screen load only when needed.
+// This makes the page load faster, reduces data usage, and improves Core Web Vitals (SEO + performance).

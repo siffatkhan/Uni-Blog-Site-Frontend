@@ -15,13 +15,20 @@
     padding: 24px;
     /* margin: 10px; */
 }
-.JournelDetailCardContainer img{
-    /* object-fit: cover; */
+/* .JournelDetailCardContainer img{
     width: 100%;
     height: 360px;
-     background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+} */
+
+.JournelDetailCardContainerImg{
+    width: 100%;
+    height: 360px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .DetailCardContent{

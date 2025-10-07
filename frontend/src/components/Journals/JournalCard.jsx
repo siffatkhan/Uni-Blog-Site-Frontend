@@ -2,8 +2,7 @@ import React,{useState} from 'react';
 import { NavLink } from "react-router-dom";
 import BookList from './BookList';
 import './JournalCard.css'; 
-// import blogs from '../../data/blogs';
-// import books from '../../data/books';
+import ImageMap from './ImageMap';
 
 
 const JournalCard = ({blogs}) => {
@@ -27,7 +26,7 @@ const JournalCard = ({blogs}) => {
     <div className="wrapper">
       <div className="navLinks">
         <button onClick={()=>handleclick("all")}>All</button>
-        <button onClick={()=>handleclick("men")}>Tech</button>
+        <button onClick={()=>handleclick("technology")}>Tech</button>
         <button onClick={()=>handleclick("career")}>Career</button>
         <button onClick={()=>handleclick("productivity")}>Productivity</button>
         <button onClick={()=>handleclick("books")} >Wanna read books!!</button>
@@ -41,17 +40,18 @@ const JournalCard = ({blogs}) => {
         if(!blog.is_featured){
             return (
                 <div className="journalCard" key={blog.id}>
-                  <img    
+                  {/* <img    
                       src={blog.cover_image_url ? `/${blog.cover_image_url}` : '/defaultCover.jpg'}
                       alt="card cover image"
                       loading="lazy"
                       className="cardCover"
-                    />
+                    /> */}
+                  <ImageMap tag={blog.tags} alt={"card cover image"} loading={"lazy"} className={"cardCover"}/>
 
                   <div className="cardContent">
                       <p className="cardMeta">
                           {blog.date} 
-                        <span class="dot-separator">•</span>
+                          <span class="dot-separator">•</span>
                           {blog.readTime}
                       </p>
 
@@ -61,7 +61,7 @@ const JournalCard = ({blogs}) => {
                             {blog.excerpt.length > 120
                             ? blog.excerpt.slice(0, 120) + '...'
                             : blog.excerpt || ""}
-                          </p>
+                        </p>
                       </NavLink>
 
                 
@@ -79,8 +79,7 @@ const JournalCard = ({blogs}) => {
                               2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 
                                 2.09C13.09 3.81 14.76 3 16.5 
                                 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
-                                6.86-8.55 11.54L12 21.35z"
-                              />
+                                6.86-8.55 11.54L12 21.35z"/>
                             </svg>
                               </span>
                               </p>
