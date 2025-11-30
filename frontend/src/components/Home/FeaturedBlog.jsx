@@ -46,7 +46,6 @@ const FeaturedBlog = () => {
           }}
         />
 
-        {/* <img src={imageSrc} alt="Featured Blog Pic" className="blogPic" /> */}
 
         <div className="blogContent">
           <div className="blogMeta">

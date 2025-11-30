@@ -108,6 +108,13 @@ const SubjectDetail = () => {
       />
 
       <ResourceSection
+        title="Books"
+        items={resources?.book || []}
+        renderList={renderList}
+        emptyMessage={() => emptyMessage("Books")}
+      />
+
+      <ResourceSection
         title="Assignments"
         items={resources?.assignment || []}
         renderList={renderList}
@@ -121,12 +128,7 @@ const SubjectDetail = () => {
         emptyMessage={() => emptyMessage("Quizzes")}
       />
 
-      <ResourceSection
-        title="Books"
-        items={resources?.book || []}
-        renderList={renderList}
-        emptyMessage={() => emptyMessage("Books")}
-      />
+      
 
       <ResourceSection
         title="Others"

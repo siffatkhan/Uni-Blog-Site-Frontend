@@ -72,8 +72,6 @@
   border: 1px solid #e5e7eb; 
   border-radius: 8px;
   padding: 8px 8px;
-
-
   max-width: 400px;
   text-align: center;
 }
@@ -105,14 +103,12 @@
   .footer-links {
     flex: 1;
     justify-content: center;
-
-
     display: flex;
-    align-items: center;  /* align icons with others */
+    align-items: center;  
   }
 
   .footer-disclaimer {
-    flex: 2; /* takes more space but still wraps */
+    flex: 2; 
     margin-left: 20px;
     text-align: left;
 

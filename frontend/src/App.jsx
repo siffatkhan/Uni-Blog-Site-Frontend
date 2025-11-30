@@ -6,7 +6,7 @@ import router from "./routes";
 function App() {
   return <RouterProvider router={router} />;
 }
+export default App;
 
 // All the routing and everything is in separate routes.jsx files 
 
-export default App;

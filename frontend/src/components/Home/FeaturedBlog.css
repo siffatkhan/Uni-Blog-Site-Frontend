@@ -108,8 +108,7 @@ body {
   max-width: 100%;             /* Don't overflow container */
   
   margin: 12px 0 0 0; /* space from meta above */
-  /* margin-left: 0;            
-  margin-right: 0; */
+
 }
 
 /* Responsive: side by side on larger screens */

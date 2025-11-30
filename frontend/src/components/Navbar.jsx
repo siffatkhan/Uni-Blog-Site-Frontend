@@ -33,9 +33,9 @@ const Navbar = () => {
         <li>
           <NavLink to="/gpa-calculator" onClick={closeMenu} className={({ isActive }) => isActive ? "highlight" : ""}>GPA</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/about" onClick={closeMenu} className={({ isActive }) => isActive ? "highlight" : ""}>About Me</NavLink>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

@@ -16,12 +16,6 @@ const GPACalculator = () => {
     setCourses([...courses, { name: "", credits: "", gradePoint: "" }]);
   };
 
-  // const removeCourse = (index) => {
-  //   const newCourses = [...courses];
-  //   newCourses.splice(index, 1);
-  //   setCourses(newCourses);
-  // };
-
   const resetCourses = () => {
     setCourses(initialCourse);
     setGpa(null);
@@ -89,13 +83,6 @@ const GPACalculator = () => {
             <option value="1">1</option>
           </select>
 
-          
-
-          {/* {courses.length > 1 && index !== 0 && (
-            <button onClick={() => removeCourse(index)} className="remove-btn">
-              X
-            </button>
-          )} */}
         </div>
       ))}
 

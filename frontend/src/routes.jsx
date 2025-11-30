@@ -10,9 +10,8 @@ import SubjectDetail from "./components/PastPapers/SubjectDetail";
 import JournalList from "./components/Journals/JournalList";
 import JournalDetail from "./components/Journals/JournalDetail";
 // import JournalCreatePage from "./components/Journals/JournalCreate";
-// import LoginPage from "./components/Account/Login";
-// import SignupPage from "./components/Account/Signup";
-import AboutMe from "./components/AboutMe";
+
+// import AboutMe from "./components/AboutMe";
 // import ContactPage from "./components/Contact";
 import HomeLayout from "./components/HomeLayout";
 import MainLayout from "./components/MainLayout";
@@ -39,7 +38,7 @@ const router=createBrowserRouter([
       // { path: "journals/create", element: <JournalCreatePage /> },
       // { path: "login", element: <LoginPage /> },
       // { path: "signup", element: <SignupPage /> },
-      { path: "about", element: <AboutMe /> },
+      // { path: "about", element: <AboutMe /> },
       // { path: "contact", element: <ContactPage /> },
     ],
   },

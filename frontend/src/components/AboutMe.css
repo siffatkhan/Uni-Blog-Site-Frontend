@@ -1,86 +1,165 @@
-.about-container {
+
+ .about-container {
   max-width: 1000px;
   margin: 30px auto;
+  /* border: 1px solid red; */
   padding: 0 20px;
   font-family: 'AvenirLTW01-35Light', 'Avenir', sans-serif;
   color: #333;
-}
+ }
+
 
 .about-card {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 100px;
-}
-
-.about-image-container {
-  flex: 1 1 320px;
-  display: flex;
-  justify-content: center;
+  gap: 90px;
+  padding: 40px 40px;
+  margin: 0px 20px;
+  border-left: 4px solid #6600EA;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
 }
 
 .about-image {
-  width: 320px;
+  width: 280px;
   border-radius: 12px;
-  transform: rotate(-90deg);
+  transform: rotate(-5deg);
   filter: grayscale(100%);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  
-}
-.name{
-  color: #6600EA;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+.about-image:hover {
+  transform: rotate(0deg) scale(1.05);
+  filter: grayscale(0%);
+}
+
+.about-heading {
+  font-size: 1.6rem;
+  font-family: 'Playfair Display', serif;
+  color: #111;
+  margin-bottom: 18px;
+}
+
+
+.about-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 16px;
+} 
+
+
+/* ===================================== */
+/* ADDING EXTRA */
+.name {
+  background: linear-gradient(90deg, #6600EA, #9B4DFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.tech {
+  color: #6600EA;
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ========================================================= */
 .about-content {
   flex: 2 1 500px;
 }
 
 .about-heading {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
+  font-size: 1.3rem;
+  margin-bottom: 24px;
   font-family: 'Playfair Display', serif;
+  color: #333;
+
 }
 
 .about-text {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.5;
   margin-bottom: 16px;
 }
 
-
-.hi-div,
+/* .hi-div, */
 .connect-div {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: 'AvenirLTW01-35Light', 'Avenir', sans-serif;
-  letter-spacing: 8px;
+  letter-spacing: 6px;
   font-weight: lighter;
   transition: transform 0.3s ease, letter-spacing 0.3s ease;
-  margin: 12px 0; /* spacing above and below */
+  margin: 12px 0px; /* spacing above and below */
 }
 
+/* ====================================== */
 
-.connect-div:hover {
+.hi-div {
+  text-align: center;
+  margin-top: 30px;
+  letter-spacing: 8px;
+  font-weight: lighter;
+}
+
+.typing {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #333;
+  border-right: 3px solid #333;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 2s steps(10, end) forwards, blink 0.7s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 6ch; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* ====================================== */
+
+/* .connect-div:hover {
   transform: scale(1.1);
   letter-spacing: 12px;
-}
+} */
 
 /* Contact Form Styles */
 
 .contact-container {
+  
   max-width: 600px;
   margin: 20px auto 40px auto;
   padding: 30px 20px;
   border: 1px solid #ddd;
   border-radius: 12px;
   background-color: #fff;
+  background: #fafafa;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+  
+  /* border: 1px solid red; */
+
 }
 
 .contact-form {
+  
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin: 10px;
 }
 
 .contact-input,
@@ -133,8 +212,6 @@
 }
 
 
-
-
 @media (max-width: 768px) {
   .about-card {
     flex-direction: column;
@@ -150,3 +227,4 @@
     font-size: 1.5rem;
   }
 }
+

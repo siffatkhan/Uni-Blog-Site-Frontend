@@ -21,11 +21,15 @@ const DeveloperInfo = () => {
 
         <div className="about-content">
           <h1 className="about-heading">
-            I’m <span className="name">Siffat</span>, an Ex-GC (PMA) and currently a Computer Science student passionate about Fullstack Web Development.
+            I’m <span className="name">Siffat Khan</span>, an Ex-GC (PMA) and currently a Computer Science student passionate about Fullstack Web Development.
           </h1>
 
           <p className="about-text">
             I’m exploring diverse areas of computer science including web development, data structures, and backend engineering. My focus is on building impactful fullstack applications with React, Next and Flask/Django.
+          </p>
+
+          <p className="about-text">
+            My focus is on building fullstack applications with <span className="tech">React</span>, <span className="tech">Next</span>, and <span className="tech">Flask/Django</span>.
           </p>
 
           <p className="about-text">
@@ -35,6 +39,8 @@ const DeveloperInfo = () => {
           <p className="about-text">
             Outside of coding, you’ll find me working out at the gym, doing chart analysis, or riding horses whenever I find one.
           </p>
+
+
         </div>
       </div>
 
@@ -43,10 +49,13 @@ const DeveloperInfo = () => {
       </div>
 
 
-      <ContactForm />
+      {/* <ContactForm />s */}
      
     </div>
   );
 };
 
 export default DeveloperInfo;
+
+
+// ============================================
