@@ -37,7 +37,7 @@ const JournalCard = ({blogs}) => {
         selectedCategory==="books" ? ( <BookList shouldFetch={true}/> ) 
         : 
         (filteredBlogs.map((blog, index) =>{
-        if(!blog.is_featured){
+        if(!blog.is_featured_homepage){
             return (
                 <div className="journalCard" key={blog.id}>
                   {/* <img    
@@ -52,7 +52,7 @@ const JournalCard = ({blogs}) => {
                       <p className="cardMeta">
                           {blog.date} 
                           <span class="dot-separator">•</span>
-                          {blog.readTime}
+                          {blog.read_time+" min read"}
                       </p>
 
                     <NavLink to={`/journals/${blog.slug}`}  state={{ fetchDetailedJournal: true }} className={({isActive})=>isActive ? "actived":"navLink"}>

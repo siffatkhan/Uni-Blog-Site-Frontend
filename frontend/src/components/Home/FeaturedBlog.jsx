@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./FeaturedBlog.css"
 import { Link } from "react-router-dom"
 import axios from "axios"
+import Loader from './Loader'
 
 const FeaturedBlog = () => {
   const [featured, setFeatured] = useState(null);
@@ -29,6 +30,7 @@ const FeaturedBlog = () => {
   }, []);
 
   if (loading) return <p>Loading featured post...</p>;
+  // if (loading) return <Loader />;
   
 // ===========================================================================
 
@@ -51,7 +53,7 @@ const FeaturedBlog = () => {
           <div className="blogMeta">
             <p className="blogAuthor">{featured?.author || "Admin"}</p>
             <p className="blogDate">
-               {"Sep 21, 2025"} <span className="dot">•</span> {featured?.read_time || "1 min read"}
+               {"Sep 21, 2025"} <span className="dot">•</span> {featured?.read_time+" min read" || "1 min read"}
             </p>
           </div>
           <div className="content">
