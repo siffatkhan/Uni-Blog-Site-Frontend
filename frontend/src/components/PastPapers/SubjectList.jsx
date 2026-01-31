@@ -1,43 +1,45 @@
-import React,{useState, useEffect } from "react";
-import SubjectCard from "./SubjectCard";
-import "./SubjectList.css"
+import React, { useState, useEffect, useContext } from "react";
+import { ErrorContext } from "../../contexts/ErrorContext";
+import { SUBJECTS_API } from "../../config";
 import SubjectSearch from "./SubjectSearch";
-import axios from "axios"
-// import subjects from '../../data/subjects';
+import SubjectCard from "./SubjectCard";
+import Loader from "../Loader";
+import axios from "axios";
+import "./SubjectList.css";
 
 
 const SubjectList = ({shouldFetchSubject}) => {
-
-// =================================================================
-// Fetching subject from database logic
   const [subjects, setSubject]=useState([]);
   const [loading, setLoading]=useState(false)
+  const { showError } = useContext(ErrorContext);
 
   useEffect(()=>{
     if(!shouldFetchSubject) return;
+    
     const controller = new AbortController();
+    let isMounted=true;
 
     const fetchSubject = async ()=>{
       try{
-        setLoading(true);
-        const res=await axios.get('http://127.0.0.1:8000/papers/api/',{
+        if(isMounted) setLoading(true);
+        const res=await axios.get(SUBJECTS_API+'/',{
         signal:controller.signal,
       });
-      setSubject(res.data)
+      if(isMounted) setSubject(res.data)
     }catch (err){
-      if(err.name==="CanceledError" || err.name ==="AbortError"){
-        console.log("Request Aborted", err)
+     if (!(err.name === "CanceledError" || err.name === "AbortError")) {
+          showError("Failed to load subjects. Please try again later.");
+        }
       }
-      else{
-        console.log("Failed to fetch subject data", err)
-      }}
     finally{
-      setLoading(false)}
+      if(isMounted) setLoading(false)}
     };
 
     fetchSubject();
-    return() => controller.abort();
-  },[shouldFetchSubject])
+    return() => {
+      isMounted=false;
+      controller.abort();}
+  },[shouldFetchSubject,showError])
 
 
 // =================================================================
@@ -53,12 +55,11 @@ const SubjectList = ({shouldFetchSubject}) => {
   // Filter subjects
   const filteredSubjects=subjects.filter((subject)=>
     subject.subject_title.toLowerCase().includes(subjectInput)   //Empty input → includes("") is always true.
-  // filter keeps everything.
   );
-// =================================================================
   
 if (!shouldFetchSubject) return null;
-if (loading){ return <p>Loading Subjects...</p>}
+if (loading) { return <Loader size={100} />;}
+
 
   return (
     <div className="parent-container">

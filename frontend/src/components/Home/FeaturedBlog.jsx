@@ -1,39 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import "./FeaturedBlog.css"
-import { Link } from "react-router-dom"
-import axios from "axios"
-import Loader from './Loader'
+import React, { useEffect, useState, useContext } from "react";
+import "./FeaturedBlog.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Loader from "../Loader";
+import { ErrorContext } from "../../contexts/ErrorContext";
+import { FEATURED_BLOG_API } from "../../config";
+
 
 const FeaturedBlog = () => {
   const [featured, setFeatured] = useState(null);
   const [loading, setLoading] = useState(false);
+  const {showError}= useContext(ErrorContext);
 
   useEffect(() => {
     const controller = new AbortController();
+    let isMounted=true;
+
     const fetchFeatured = async () => {
       try {
-        setLoading(true);
-        const res = await axios.get("http://127.0.0.1:8000/journals/api/featured/", {
-          signal: controller.signal,
-        });
-        setFeatured(res.data);
+        if(isMounted) setLoading(true);
+        const res = await axios.get(FEATURED_BLOG_API+"/", {
+          signal: controller.signal}
+        );
+        if(isMounted) setFeatured(res.data);
       } catch (err) {
-        if (err.name !== "CanceledError" && err.name !== "AbortError") {
-          console.error("Error fetching featured blog:", err);
+        if (!(err.name === "CanceledError" || err.name === "AbortError")) {
+          showError("Failed to load featured blog.");
         }
       } finally {
-        setLoading(false);
+       if(isMounted) setLoading(false);
       }
     };
     fetchFeatured();
-    return () => controller.abort();
-  }, []);
+    return () =>{ 
+      isMounted=false;
+      controller.abort();}
+  }, [showError]);
 
-  if (loading) return <p>Loading featured post...</p>;
-  // if (loading) return <Loader />;
-  
+
+  if (loading) { return <Loader size={100} />; }
 // ===========================================================================
-
   return (
     <div className="featuredBlogContainer">
       <p className="featuredLabel">FEATURED POST</p>

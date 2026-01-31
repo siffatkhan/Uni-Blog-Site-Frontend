@@ -13,8 +13,6 @@ const SubjectSearch = (props) => {
         placeholder="Search Subject"
       />
     </div>
-    // onChange={props.onChange} means when user types,
-    //  it calls the function from parent (handleChange).
   );
 };
 

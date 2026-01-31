@@ -2,9 +2,14 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
+import GlobalErrorPage from "./contexts/GlobalErrorPage";
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+  <>
+  <GlobalErrorPage/>
+  <RouterProvider router={router} />;
+  </>);
 }
 export default App;
 

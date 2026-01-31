@@ -1,84 +1,71 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import "./JournalDetail.css"
-import ReactMarkdown from "react-markdown"
-import axios from "axios"
-import ImageMap from "./ImageMap"
+import "./JournalDetail.css";
+import ReactMarkdown from "react-markdown";
+import axios from "axios";
+import ImageMap from "./ImageMap";
+import Loader from "../Loader";
+import { ErrorContext } from "../../contexts/ErrorContext";
+import { JOURNALS_API } from "../../config";
 
 const JournalDetail = () => {
-
   const [blog,setBlogDetail]=useState(null);
   const [loading,setLoading]=useState(false);
+  const { showError } = useContext(ErrorContext);
 
   const { slug } = useParams();
   const location = useLocation();
   const { fetchDetailedJournal } = location.state || {};
-
-  // location.state
-  // <Link to={`/journals/${journal.slug}`} 
-  // state={{ fetchDetailedJournal }}></Link>
-  // When you navigate using <Link> or useNavigate, you can pass extra state.
-  // IT gives you a pre-passed function (or data) from the previous page, 
-  // so you don’t need to fetch again from scratch if you already have it.
-  // This safely extracts fetchDetailedJournal if it was passed. 
-  // If nothing was passed, it defaults to {} so it doesn’t crash.
-  
-
   // // ==================================================================
   // LIKE FUNCTIONITY ADDED TO THE LOCALSTORAGE
 
-  const [likeStatus,setLikeStatus]=useState(
-    ()=>localStorage.getItem(`like-${slug}`) === "true"
+  const [likeStatus, setLikeStatus] = useState(
+    () => localStorage.getItem(`like-${slug}`) === "true"
   );
 
-  function toggleLikeStatus(){
-    const newStatus =!likeStatus
+  function toggleLikeStatus() {
+    const newStatus = !likeStatus;
     setLikeStatus(newStatus);
-    localStorage.setItem(`like-${slug}`, newStatus)
+    localStorage.setItem(`like-${slug}`, newStatus);
   }
+
 // ==================================================================
 // Fetching journals from database
-
   useEffect(()=>{
     if(!fetchDetailedJournal) return;
 
+    let isMounted= true;
     const controller=new AbortController();
 
     const fetchJournal= async() => {
       try{
-        setLoading(true)
-        const res = await axios.get(`http://127.0.0.1:8000/journals/api/${slug}/`, {
-          signal:controller.signal
-        });
-        setBlogDetail(res.data)
+        if (isMounted) setLoading(true);
+        const res = await axios.get(`${JOURNALS_API}/${slug}/`,
+           { signal:controller.signal}
+        );
+        if(isMounted) setBlogDetail(res.data);
       }
       catch(err){
-        if(err.name==="CanceledError" || err.name==="AbortError"){
-          console.log("Request aborted")
-        } else {
-          console.log("Error fetching journal", err)
+        if(!(err.name==="CanceledError" || err.name==="AbortError")){
+          showError("Failed to load that blog. Please try again later.")
         }
-      }
-      finally{
-        setLoading(false);
+      } finally{
+        if(isMounted) setLoading(false);
       }
     };
     
     fetchJournal();
-    return()=>controller.abort();
-
-  },[fetchDetailedJournal,slug])
+    return()=>{
+      isMounted=false;
+      controller.abort();}
+  },[fetchDetailedJournal,slug,showError])
 // ==================================================================
-  if(loading) return <p>Loading...</p>
-  if (!blog) return <p>Blog not found</p>; // avoid errors on invalid slugs
+  if (loading) { return <Loader size={100} />; }
+  if (!blog) return <p>Blog not found</p>;
   
 // ==================================================================
   return (
     <div className="JournelDetailCardContainer">
-      {/* <h1 className="DetailCardTitle">{blog.title}</h1> */}
-
-      {/* testing new component */}
-      {/* <img src={blog.cover_image_url ? `/${blog.cover_image_url}` : "/defaultCover.jpg"} alt="Blog Cover Image" loading="lazy"/> */}
       <ImageMap tag={blog.tags} alt={"blog cover image"} loading={false} className={"JournelDetailCardContainerImg"}/>
       
 
@@ -91,20 +78,7 @@ const JournalDetail = () => {
         <div>
           <p className="AuthorName">{blog.author}</p>
           <p className="AuthorDept">{blog.department} • {blog.batch}</p>
-
-          {/* BELOW LINKS CAN BE ADDED FOR THE INSTA AND LINKEDIN PROFILE OF EACH JOURNALS AUTHORS */}
-            {/* <div className="AuthorSocials">
-              { blog.li_username && (
-             <a href={`https://linkedin.com/in/${blog.li_username}`} target="_blank" rel="noopener noreferrer" title="LinkedIn">
-              <i className="fab fa-linkedin"></i>
-             </a> )}
-                { blog.ig_username && (
-             <a href={`https://instagram.com/${blog.ig_username}`} target="_blank" rel="noopener noreferrer" title="Instagram">
-                <i className="fab fa-instagram"></i>
-             </a> )}
-            </div> */}
-
-          </div>
+        </div>
         </div>
 
         <button 
@@ -134,3 +108,16 @@ export default JournalDetail;
 //       With lazy loading:
 // Images below the screen load only when needed.
 // This makes the page load faster, reduces data usage, and improves Core Web Vitals (SEO + performance).
+
+
+
+
+  // location.state
+  // <Link to={`/journals/${journal.slug}`} 
+  // state={{ fetchDetailedJournal }}></Link>
+  // When you navigate using <Link> or useNavigate, you can pass extra state.
+  // IT gives you a pre-passed function (or data) from the previous page, 
+  // so you don’t need to fetch again from scratch if you already have it.
+  // This safely extracts fetchDetailedJournal if it was passed. 
+  // If nothing was passed, it defaults to {} so it doesn’t crash.
+  

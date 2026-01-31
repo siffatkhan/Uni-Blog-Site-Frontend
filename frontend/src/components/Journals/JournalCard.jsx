@@ -29,7 +29,7 @@ const JournalCard = ({blogs}) => {
         <button onClick={()=>handleclick("technology")}>Tech</button>
         <button onClick={()=>handleclick("career")}>Career</button>
         <button onClick={()=>handleclick("productivity")}>Productivity</button>
-        <button onClick={()=>handleclick("books")} >Wanna read books!!</button>
+        <button onClick={()=>handleclick("books")} >Read Books</button>
       </div>
     
     <div className="journalCardGrid"> {/* Flex or grid container */}

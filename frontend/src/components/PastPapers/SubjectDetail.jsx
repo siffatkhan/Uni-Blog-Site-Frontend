@@ -1,48 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ResourceSection from "./ResourceSection";
 import axios from "axios";
 import "./SubjectDetail.css";
+import { ErrorContext } from "../../contexts/ErrorContext";
+import Loader from "../Loader";
+import { SUBJECTS_API } from "../../config";
+
 
 const SubjectDetail = () => {
   const { slug } = useParams();
   const [subjectResources, setSubjectResources] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { showError } = useContext(ErrorContext);
 
   const driveIcon =
     "https://upload.wikimedia.org/wikipedia/commons/d/da/Google_Drive_logo.png";
-
   // ============================================================================
   // FETCHING SUBJECT RELATED DATA FROM DATABASE
+
+    useEffect(() => {
+  window.scrollTo(0, 0);
+}, [slug]);
+
   useEffect(() => {
     const controller = new AbortController();
+    let isMounted=true;
 
     const fetchSubjectData = async () => {
       try {
-
-        setLoading(true);
-
-        const res = await axios.get(
-          `http://127.0.0.1:8000/papers/api/${slug}/`,
+        if(isMounted) setLoading(true);
+        const res = await axios.get(`${SUBJECTS_API}/${slug}/`,
           { signal: controller.signal }
         );
-        setSubjectResources(res.data);
+        if(isMounted) setSubjectResources(res.data);
       } catch (err) {
-        if (err.name === "CanceledError" || err.name === "AbortError") {
-          console.log("Request Aborted", err);
-        } else {
-          console.log("Failed to fetch resources", err);
-          setError("Failed to fetch subject data.");
+        if (!(err.name === "CanceledError" || err.name === "AbortError")) {
+          showError("Failed to fetch subject data.");
         }
       } finally {
-        setLoading(false);
+       if(isMounted) setLoading(false);
       }
     };
-
     fetchSubjectData();
-    return () => controller.abort();
-  }, [slug]);
+    return () => {
+      isMounted=false;
+      controller.abort();}
+  }, [slug,showError]);
 
   // Empty message handler
   const emptyMessage = (sectionName) => (
@@ -83,12 +87,10 @@ const SubjectDetail = () => {
 	// =================================================
 
   // Loading & Error States
-  if (loading) return <p className="status loading">Loading subject data</p>;
-  if (error) return <p className="status error">{error}</p>;
+  if (loading) { return <Loader size={100} />; }
   if (!subjectResources) return null;
 
   const { subject_title, resources } = subjectResources;
-
   return (
     <div className="subject-detail">
       <h2 className="subject-title">{subject_title}</h2>
@@ -128,15 +130,12 @@ const SubjectDetail = () => {
         emptyMessage={() => emptyMessage("Quizzes")}
       />
 
-      
-
       <ResourceSection
         title="Others"
         items={resources?.other || []}
         renderList={renderList}
         emptyMessage={() => emptyMessage("Others")}
       />
-
       
       <div className="help-section">
         <h3>

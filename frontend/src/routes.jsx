@@ -9,16 +9,11 @@ import SubjectList from "./components/PastPapers/SubjectList";
 import SubjectDetail from "./components/PastPapers/SubjectDetail";
 import JournalList from "./components/Journals/JournalList";
 import JournalDetail from "./components/Journals/JournalDetail";
-// import JournalCreatePage from "./components/Journals/JournalCreate";
-
-// import AboutMe from "./components/AboutMe";
-// import ContactPage from "./components/Contact";
 import HomeLayout from "./components/HomeLayout";
 import MainLayout from "./components/MainLayout";
-
-// import ExtraTestLayout from "./components/ExtraTestLayout";
-
-
+// import JournalCreatePage from "./components/Journals/JournalCreate";
+// import AboutMe from "./components/AboutMe";
+// import ContactPage from "./components/Contact";
 
 const router=createBrowserRouter([
   {
